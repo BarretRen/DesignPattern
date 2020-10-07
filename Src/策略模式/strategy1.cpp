@@ -1,30 +1,37 @@
-enum TaxBase {
-	CN_Tax,
-	US_Tax,
-	DE_Tax,
-	FR_Tax       //更改
+enum TaxBase
+{
+    CN_Tax,
+    US_Tax,
+    DE_Tax,
+    FR_Tax //鏇存敼
 };
 
-class SalesOrder{
+class SalesOrder
+{
     TaxBase tax;
+
 public:
-    double CalculateTax(){
+    double CalculateTax()
+    {
         //...
-        
-        if (tax == CN_Tax){
+
+        if (tax == CN_Tax)
+        {
             //CN***********
         }
-        else if (tax == US_Tax){
+        else if (tax == US_Tax)
+        {
             //US***********
         }
-        else if (tax == DE_Tax){
+        else if (tax == DE_Tax)
+        {
             //DE***********
         }
-		else if (tax == FR_Tax){  //更改
-			//...
-		}
+        else if (tax == FR_Tax)
+        {   //鏇存敼
+            //...
+        }
 
         //....
-     }
-    
+    }
 };

@@ -1,30 +1,34 @@
-//应用程序开发人员
-class Application{
+//应锟矫筹拷锟津开凤拷锟斤拷员
+class Application
+{
 public:
-	bool Step2(){
-		//...
+    bool Step2()
+    {
+        //...
     }
 
-    void Step4(){
-		//...
+    void Step4()
+    {
+        //...
     }
 };
 
 int main()
 {
-	Library lib();
-	Application app();
+    Library lib();
+    Application app();
 
-	lib.Step1();
+    lib.Step1();
 
-	if (app.Step2()){
-		lib.Step3();
-	}
+    if (app.Step2())
+    {
+        lib.Step3();
+    }
 
-	for (int i = 0; i < 4; i++){
-		app.Step4();
-	}
+    for (int i = 0; i < 4; i++)
+    {
+        app.Step4();
+    }
 
-	lib.Step5();
-
+    lib.Step5();
 }

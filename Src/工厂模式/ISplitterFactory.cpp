@@ -1,18 +1,16 @@
 
 //抽象类
-class ISplitter{
+class ISplitter
+{
 public:
-    virtual void split()=0;
-    virtual ~ISplitter(){}
+    virtual void split() = 0;
+    virtual ~ISplitter() {}
 };
-
 
 //工厂基类
-class SplitterFactory{
+class SplitterFactory
+{
 public:
-    virtual ISplitter* CreateSplitter()=0;
-    virtual ~SplitterFactory(){}
+    virtual ISplitter *CreateSplitter() = 0;
+    virtual ~SplitterFactory() {}
 };
-
-
-

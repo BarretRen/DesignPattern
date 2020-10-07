@@ -3,7 +3,6 @@
 #include <string>
 using namespace std;
 
-
 class Command
 {
 public:
@@ -13,29 +12,31 @@ public:
 class ConcreteCommand1 : public Command
 {
     string arg;
+
 public:
-    ConcreteCommand1(const string & a) : arg(a) {}
+    ConcreteCommand1(const string &a) : arg(a) {}
     void execute() override
     {
-        cout<< "#1 process..."<<arg<<endl;
+        cout << "#1 process..." << arg << endl;
     }
 };
 
 class ConcreteCommand2 : public Command
 {
     string arg;
+
 public:
-    ConcreteCommand2(const string & a) : arg(a) {}
+    ConcreteCommand2(const string &a) : arg(a) {}
     void execute() override
     {
-        cout<< "#2 process..."<<arg<<endl;
+        cout << "#2 process..." << arg << endl;
     }
 };
-        
-        
+
 class MacroCommand : public Command
 {
-    vector<Command*> commands;
+    vector<Command *> commands;
+
 public:
     void addCommand(Command *c) { commands.push_back(c); }
     void execute() override
@@ -46,19 +47,16 @@ public:
         }
     }
 };
-        
 
-        
 int main()
 {
 
     ConcreteCommand1 command1(receiver, "Arg ###");
     ConcreteCommand2 command2(receiver, "Arg $$$");
-    
+
     MacroCommand macro;
     macro.addCommand(&command1);
     macro.addCommand(&command2);
-    
-    macro.execute();
 
+    macro.execute();
 }

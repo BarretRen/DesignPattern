@@ -14,29 +14,32 @@ class Reqest
 {
     string description;
     RequestType reqType;
+
 public:
-    Reqest(const string & desc, RequestType type) : description(desc), reqType(type) {}
+    Reqest(const string &desc, RequestType type) : description(desc), reqType(type) {}
     RequestType getReqType() const { return reqType; }
-    const string& getDescription() const { return description; }
+    const string &getDescription() const { return description; }
 };
 
-class ChainHandler{
-    
+class ChainHandler
+{
+
     ChainHandler *nextChain;
-    void sendReqestToNextHandler(const Reqest & req)
+    void sendReqestToNextHandler(const Reqest &req)
     {
         if (nextChain != nullptr)
             nextChain->handle(req);
     }
+
 protected:
-    virtual bool canHandleRequest(const Reqest & req) = 0;
-    virtual void processRequest(const Reqest & req) = 0;
+    virtual bool canHandleRequest(const Reqest &req) = 0;
+    virtual void processRequest(const Reqest &req) = 0;
+
 public:
     ChainHandler() { nextChain = nullptr; }
     void setNextChain(ChainHandler *next) { nextChain = next; }
-    
-   
-    void handle(const Reqest & req)
+
+    void handle(const Reqest &req)
     {
         if (canHandleRequest(req))
             processRequest(req);
@@ -45,50 +48,53 @@ public:
     }
 };
 
-
-class Handler1 : public ChainHandler{
+class Handler1 : public ChainHandler
+{
 protected:
-    bool canHandleRequest(const Reqest & req) override
+    bool canHandleRequest(const Reqest &req) override
     {
         return req.getReqType() == RequestType::REQ_HANDLER1;
     }
-    void processRequest(const Reqest & req) override
+    void processRequest(const Reqest &req) override
     {
         cout << "Handler1 is handle reqest: " << req.getDescription() << endl;
     }
 };
-        
-class Handler2 : public ChainHandler{
+
+class Handler2 : public ChainHandler
+{
 protected:
-    bool canHandleRequest(const Reqest & req) override
+    bool canHandleRequest(const Reqest &req) override
     {
         return req.getReqType() == RequestType::REQ_HANDLER2;
     }
-    void processRequest(const Reqest & req) override
+    void processRequest(const Reqest &req) override
     {
         cout << "Handler2 is handle reqest: " << req.getDescription() << endl;
     }
 };
 
-class Handler3 : public ChainHandler{
+class Handler3 : public ChainHandler
+{
 protected:
-    bool canHandleRequest(const Reqest & req) override
+    bool canHandleRequest(const Reqest &req) override
     {
         return req.getReqType() == RequestType::REQ_HANDLER3;
     }
-    void processRequest(const Reqest & req) override
+    void processRequest(const Reqest &req) override
     {
         cout << "Handler3 is handle reqest: " << req.getDescription() << endl;
     }
 };
 
-int main(){
+int main()
+{
     Handler1 h1;
     Handler2 h2;
     Handler3 h3;
     h1.setNextChain(&h2);
     h2.setNextChain(&h3);
-    
+
     Reqest req("process task ... ", RequestType::REQ_HANDLER3);
     h1.handle(req);
     return 0;

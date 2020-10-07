@@ -1,83 +1,90 @@
-class NetworkState{
+class NetworkState
+{
 
 public:
-    NetworkState* pNext;
-    virtual void Operation1()=0;
-    virtual void Operation2()=0;
-    virtual void Operation3()=0;
+    NetworkState *pNext;
+    virtual void Operation1() = 0;
+    virtual void Operation2() = 0;
+    virtual void Operation3() = 0;
 
-    virtual ~NetworkState(){}
+    virtual ~NetworkState() {}
 };
 
+class OpenState : public NetworkState
+{
 
-class OpenState :public NetworkState{
-    
-    static NetworkState* m_instance;
+    static NetworkState *m_instance;
+
 public:
-    static NetworkState* getInstance(){
-        if (m_instance == nullptr) {
+    static NetworkState *getInstance()
+    {
+        if (m_instance == nullptr)
+        {
             m_instance = new OpenState();
         }
         return m_instance;
     }
 
-    void Operation1(){
-        
+    void Operation1()
+    {
+
         //**********
         pNext = CloseState::getInstance();
     }
-    
-    void Operation2(){
-        
+
+    void Operation2()
+    {
+
         //..........
         pNext = ConnectState::getInstance();
     }
-    
-    void Operation3(){
-        
+
+    void Operation3()
+    {
+
         //$$$$$$$$$$
         pNext = OpenState::getInstance();
     }
-    
-    
 };
 
-class CloseState:public NetworkState{ }
+class CloseState : public NetworkState
+{
+}
 //...
 
+class NetworkProcessor
+{
 
-class NetworkProcessor{
-    
-    NetworkState* pState;
-    
+    NetworkState *pState;
+
 public:
-    
-    NetworkProcessor(NetworkState* pState){
-        
+    NetworkProcessor(NetworkState *pState)
+    {
+
         this->pState = pState;
     }
-    
-    void Operation1(){
+
+    void Operation1()
+    {
         //...
         pState->Operation1();
         pState = pState->pNext;
         //...
     }
-    
-    void Operation2(){
+
+    void Operation2()
+    {
         //...
         pState->Operation2();
         pState = pState->pNext;
         //...
     }
-    
-    void Operation3(){
+
+    void Operation3()
+    {
         //...
         pState->Operation3();
         pState = pState->pNext;
         //...
     }
-
 };
-
-

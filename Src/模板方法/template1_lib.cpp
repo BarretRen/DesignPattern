@@ -1,16 +1,20 @@
-//³ÌÐò¿â¿ª·¢ÈËÔ±
-class Library{
+//ï¿½ï¿½ï¿½ï¿½â¿ªï¿½ï¿½ï¿½ï¿½Ô±
+class Library
+{
 
 public:
-	void Step1(){
-		//...
-	}
-
-    void Step3(){
-		//...
+    void Step1()
+    {
+        //...
     }
 
-    void Step5(){
-		//...
+    void Step3()
+    {
+        //...
+    }
+
+    void Step5()
+    {
+        //...
     }
 };

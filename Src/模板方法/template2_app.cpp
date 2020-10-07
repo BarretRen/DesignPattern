@@ -1,27 +1,23 @@
-//Ó¦ÓÃ³ÌÐò¿ª·¢ÈËÔ±
-class Application : public Library {
+//Ó¦ï¿½Ã³ï¿½ï¿½ò¿ª·ï¿½ï¿½ï¿½Ô±
+class Application : public Library
+{
 protected:
-	virtual bool Step2(){
-		//... ×ÓÀàÖØÐ´ÊµÏÖ
+    virtual bool Step2()
+    {
+        //... ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´Êµï¿½ï¿½
     }
 
-    virtual void Step4() {
-		//... ×ÓÀàÖØÐ´ÊµÏÖ
+    virtual void Step4()
+    {
+        //... ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´Êµï¿½ï¿½
     }
 };
 
-
-
-
 int main()
-	{
-	    Library* pLib=new Application();
-	    lib->Run();
+{
+    Library *pLib = new Application();
+    lib->Run();
 
-		delete pLib;
-	}
+    delete pLib;
 }
-
-
-
-
+}

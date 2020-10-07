@@ -1,30 +1,34 @@
-class ISubject{
+class ISubject
+{
 public:
     virtual void process();
 };
 
-
-class RealSubject: public ISubject{
+class RealSubject : public ISubject
+{
 public:
-    virtual void process(){
+    virtual void process()
+    {
         //....
     }
 };
 
-class ClientApp{
-    
-    ISubject* subject;
-    
+class ClientApp
+{
+
+    ISubject *subject;
+
 public:
-    
-    ClientApp(){
-        subject=new RealSubject();
+    ClientApp()
+    {
+        subject = new RealSubject();
     }
-    
-    void DoTask(){
+
+    void DoTask()
+    {
         //...
         subject->process();
-        
+
         //....
     }
 };

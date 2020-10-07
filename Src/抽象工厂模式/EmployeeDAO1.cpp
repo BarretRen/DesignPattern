@@ -1,21 +1,22 @@
 
-class EmployeeDAO{
-    
+class EmployeeDAO
+{
+
 public:
-    vector<EmployeeDO> GetEmployees(){
-        SqlConnection* connection =
+    vector<EmployeeDO> GetEmployees()
+    {
+        SqlConnection *connection =
             new SqlConnection();
         connection->ConnectionString = "...";
 
-        SqlCommand* command =
+        SqlCommand *command =
             new SqlCommand();
-        command->CommandText="...";
+        command->CommandText = "...";
         command->SetConnection(connection);
 
-        SqlDataReader* reader = command->ExecuteReader();
-        while (reader->Read()){
-
+        SqlDataReader *reader = command->ExecuteReader();
+        while (reader->Read())
+        {
         }
-
     }
 };

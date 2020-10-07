@@ -1,36 +1,41 @@
-//³ÌÐò¿â¿ª·¢ÈËÔ±
-class Library{
+//ï¿½ï¿½ï¿½ï¿½â¿ªï¿½ï¿½ï¿½ï¿½Ô±
+class Library
+{
 public:
-	//ÎÈ¶¨ template method
-    void Run(){
-        
+    //ï¿½È¶ï¿½ template method
+    void Run()
+    {
+
         Step1();
 
-        if (Step2()) { //Ö§³Ö±ä»¯ ==> Ðéº¯ÊýµÄ¶àÌ¬µ÷ÓÃ
-            Step3(); 
+        if (Step2())
+        { //Ö§ï¿½Ö±ä»¯ ==> ï¿½éº¯ï¿½ï¿½ï¿½Ä¶ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½
+            Step3();
         }
 
-        for (int i = 0; i < 4; i++){
-            Step4(); //Ö§³Ö±ä»¯ ==> Ðéº¯ÊýµÄ¶àÌ¬µ÷ÓÃ
+        for (int i = 0; i < 4; i++)
+        {
+            Step4(); //Ö§ï¿½Ö±ä»¯ ==> ï¿½éº¯ï¿½ï¿½ï¿½Ä¶ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½
         }
 
         Step5();
-
     }
-	virtual ~Library(){ }
+    virtual ~Library() {}
 
 protected:
-	
-	void Step1() { //ÎÈ¶¨
+    void Step1()
+    { //ï¿½È¶ï¿½
         //.....
     }
-	void Step3() {//ÎÈ¶¨
+    void Step3()
+    { //ï¿½È¶ï¿½
         //.....
     }
-	void Step5() { //ÎÈ¶¨
-		//.....
-	}
+    void Step5()
+    {   //ï¿½È¶ï¿½
+        //.....
+    }
 
-	virtual bool Step2() = 0;//±ä»¯
-    virtual void Step4() =0; //±ä»¯
+    virtual bool Step2() = 0; //ï¿½ä»¯
+    virtual void Step4() = 0; //ï¿½ä»¯
 };
