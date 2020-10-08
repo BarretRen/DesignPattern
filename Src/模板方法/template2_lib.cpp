@@ -1,41 +1,40 @@
-//����⿪����Ա
 class Library
 {
 public:
-    //�ȶ� template method
+    //稳定 template method
     void Run()
     {
 
         Step1();
 
-        if (Step2())
-        { //֧�ֱ仯 ==> �麯���Ķ�̬����
+        if (Step2()) //֧支持变化-->虚函数的多态调用
+        {
             Step3();
         }
 
         for (int i = 0; i < 4; i++)
         {
-            Step4(); //֧�ֱ仯 ==> �麯���Ķ�̬����
+            Step4(); //֧支持变化-->虚函数的多态调用
         }
 
         Step5();
     }
-    virtual ~Library() {}
+    virtual ~Library() {} //基类虚构函数要virtual
 
 protected:
     void Step1()
-    { //�ȶ�
+    { //稳定
         //.....
     }
     void Step3()
-    { //�ȶ�
+    { //稳定
         //.....
     }
     void Step5()
-    {   //�ȶ�
+    { //稳定
         //.....
     }
 
-    virtual bool Step2() = 0; //�仯
-    virtual void Step4() = 0; //�仯
+    virtual bool Step2() = 0; //变化，交给子类实现
+    virtual void Step4() = 0; //变化，交给子类实现
 };

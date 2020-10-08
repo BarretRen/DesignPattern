@@ -1,15 +1,14 @@
-//Ӧ�ó��򿪷���Ա
 class Application : public Library
 {
 protected:
     virtual bool Step2()
     {
-        //... ������дʵ��
+        //... 子类重写方法
     }
 
     virtual void Step4()
     {
-        //... ������дʵ��
+        //... 子类重写方法
     }
 };
 
