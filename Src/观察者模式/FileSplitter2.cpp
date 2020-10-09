@@ -10,7 +10,7 @@ class FileSplitter
     string m_filePath;
     int m_fileNumber;
 
-    List<IProgress *> m_iprogressList; // ����֪ͨ���ƣ�֧�ֶ���۲���
+    List<IProgress *> m_iprogressList; //抽象通知机制，观察者的核心
 
 public:
     FileSplitter(const string &filePath, int fileNumber) : m_filePath(filePath),
@@ -21,16 +21,15 @@ public:
     void split()
     {
 
-        //1.��ȡ���ļ�
-
-        //2.��������С�ļ���д��
+        //1.读取大文件
+        //...
+        //2.分批次向小文件写入
         for (int i = 0; i < m_fileNumber; i++)
         {
             //...
-
             float progressValue = m_fileNumber;
             progressValue = (i + 1) / progressValue;
-            onProgress(progressValue); //����֪ͨ
+            onProgress(progressValue); //更新进度
         }
     }
 
@@ -51,9 +50,9 @@ protected:
         List<IProgress *>::iterator itor = m_iprogressList.begin();
 
         while (itor != m_iprogressList.end())
+        {
             (*itor)->DoProgress(value); //���½�����
-        itor++;
+            itor++;
+        }
     }
-}
-}
-;
+};

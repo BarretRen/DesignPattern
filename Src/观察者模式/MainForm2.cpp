@@ -16,10 +16,10 @@ public:
 
         FileSplitter splitter(filePath, number);
 
-        splitter.addIProgress(this);  //����֪ͨ
-        splitter.addIProgress(&cn) �� //����֪ͨ
+        splitter.addIProgress(this); //添加IProgress的子类对象
+        splitter.addIProgress(&cn);  //添加IProgress的子类对象
 
-            splitter.split();
+        splitter.split();
 
         splitter.removeIProgress(this);
     }
@@ -35,6 +35,6 @@ class ConsoleNotifier : public IProgress
 public:
     virtual void DoProgress(float value)
     {
-        cout << ".";
+        std::cout << ".";
     }
 };

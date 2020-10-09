@@ -1,3 +1,4 @@
+class Context;
 
 class TaxStrategy
 {
@@ -47,11 +48,11 @@ public:
 class SalesOrder
 {
 private:
-    TaxStrategy *strategy;
+    TaxStrategy *strategy;//基类指针，用于多态调用
 
 public:
     SalesOrder(StrategyFactory *strategyFactory)
-    {
+    {//赋值具体的子类对象
         this->strategy = strategyFactory->NewStrategy();
     }
     ~SalesOrder()
@@ -59,14 +60,13 @@ public:
         delete this->strategy;
     }
 
-public
+public:
     double CalculateTax()
     {
         //...
         Context context();
 
-        double val =
-            strategy->Calculate(context); //多态调用
+        double val = strategy->Calculate(context); //多态调用
         //...
     }
 };
