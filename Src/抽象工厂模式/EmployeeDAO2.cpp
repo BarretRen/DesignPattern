@@ -1,4 +1,3 @@
-
 //数据库访问有关的基类
 class IDBConnection
 {
@@ -71,12 +70,10 @@ class EmployeeDAO
 public:
     vector<EmployeeDO> GetEmployees()
     {
-        IDBConnection *connection =
-            dbConnectionFactory->CreateDBConnection();
+        IDBConnection *connection = dbConnectionFactory->CreateDBConnection();
         connection->ConnectionString("...");
 
-        IDBCommand *command =
-            dbCommandFactory->CreateDBCommand();
+        IDBCommand *command = dbCommandFactory->CreateDBCommand();
         command->CommandText("...");
         command->SetConnection(connection); //关联性
 
