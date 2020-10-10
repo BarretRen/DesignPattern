@@ -62,11 +62,9 @@ public:
 };
 
 //扩展操作
-
 class CryptoStream : public Stream
 {
-
-    Stream *stream; //...
+    Stream *stream; //组合代替继承
 
 public:
     CryptoStream(Stream *stm) : stream(stm)
@@ -82,21 +80,20 @@ public:
     virtual void Seek(int position)
     {
         //额外的加密操作...
-        stream::Seek(position); //定位文件流
+        stream->Seek(position); //定位文件流
         //额外的加密操作...
     }
     virtual void Write(byte data)
     {
         //额外的加密操作...
-        stream::Write(data); //写文件流
+        stream->Write(data); //写文件流
         //额外的加密操作...
     }
 };
 
 class BufferedStream : public Stream
 {
-
-    Stream *stream; //...
+    Stream *stream; //组合代替继承
 
 public:
     BufferedStream(Stream *stm) : stream(stm)
@@ -107,7 +104,6 @@ public:
 
 void Process()
 {
-
     //运行时装配
     FileStream *s1 = new FileStream();
     CryptoStream *s2 = new CryptoStream(s1);

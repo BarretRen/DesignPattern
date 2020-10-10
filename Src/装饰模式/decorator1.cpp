@@ -84,7 +84,7 @@ public:
     }
 };
 
-class CryptoNetworkStream : : public NetworkStream
+class CryptoNetworkStream : public NetworkStream
 {
 public:
     virtual char Read(int number)
@@ -175,7 +175,6 @@ public:
 
 void Process()
 {
-
     //编译时装配
     CryptoFileStream *fs1 = new CryptoFileStream();
 

@@ -1,8 +1,8 @@
 //业务操作
 class Stream
 {
-
-    public： virtual char Read(int number) = 0;
+public:
+    virtual char Read(int number) = 0;
     virtual void Seek(int position) = 0;
     virtual void Write(char data) = 0;
 
@@ -62,20 +62,18 @@ public:
 };
 
 //扩展操作
-
-DecoratorStream : public Stream
+class DecoratorStream : public Stream //装饰器基类
 {
 protected:
-    Stream *stream; //...
+    Stream *stream; //组合代替继承
 
-    DecoratorStream(Stream * stm) : stream(stm)
+    DecoratorStream(Stream *stm) : stream(stm)
     {
     }
 };
 
 class CryptoStream : public DecoratorStream
 {
-
 public:
     CryptoStream(Stream *stm) : DecoratorStream(stm)
     {
@@ -90,20 +88,19 @@ public:
     virtual void Seek(int position)
     {
         //额外的加密操作...
-        stream::Seek(position); //定位文件流
+        stream->Seek(position); //定位文件流
         //额外的加密操作...
     }
     virtual void Write(byte data)
     {
         //额外的加密操作...
-        stream::Write(data); //写文件流
+        stream->Write(data); //写文件流
         //额外的加密操作...
     }
 };
 
 class BufferedStream : public DecoratorStream
 {
-
     Stream *stream; //...
 
 public:
@@ -115,7 +112,6 @@ public:
 
 void Process()
 {
-
     //运行时装配
     FileStream *s1 = new FileStream();
 
