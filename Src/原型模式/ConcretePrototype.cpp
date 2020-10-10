@@ -1,12 +1,10 @@
-
-
 //具体类
 class BinarySplitter : public ISplitter
 {
 public:
     virtual ISplitter *clone()
     {
-        return new BinarySplitter(*this);
+        return new BinarySplitter(*this);//需要拷贝构造函数正确实现
     }
 };
 
