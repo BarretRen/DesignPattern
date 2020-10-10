@@ -14,7 +14,6 @@ public:
 };
 
 //平台实现
-
 class PCMessagerBase : public Messager
 {
 public:
@@ -58,7 +57,6 @@ public:
 };
 
 //业务抽象
-
 class PCMessagerLite : public PCMessagerBase
 {
 public:
@@ -166,6 +164,5 @@ public:
 void Process()
 {
     //编译时装配
-    Messager *m =
-        new MobileMessagerPerfect();
+    Messager *m = new MobileMessagerPerfect();
 }
