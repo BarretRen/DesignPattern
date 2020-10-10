@@ -10,7 +10,6 @@ public:
 
     void Button1_Click()
     {
-
         ISplitter *splitter = factory->CreateSplitter(); //多态new
 
         splitter->split();
