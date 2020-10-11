@@ -15,7 +15,7 @@ public:
 
 class ClientApp
 {
-
+private:
     ISubject *subject;
 
 public:
@@ -28,7 +28,6 @@ public:
     {
         //...
         subject->process();
-
         //....
     }
 };
