@@ -1,4 +1,3 @@
-
 class House
 {
     //....
@@ -7,7 +6,7 @@ class House
 class HouseBuilder
 {
 public:
-    House *GetResult()
+    House *GetResult() //返回一个House对象
     {
         return pHouse;
     }
@@ -46,21 +45,19 @@ protected:
     {
     }
 };
-
+//稳定的部分
 class HouseDirector
 {
-
 public:
     HouseBuilder *pHouseBuilder;
 
-    HouseDirector(HouseBuilder *pHouseBuilder)
+    HouseDirector(HouseBuilder *pHouseBuilder) //注入实际的子类对象
     {
         this->pHouseBuilder = pHouseBuilder;
     }
 
-    House *Construct()
+    House *Construct()//按照确定的顺序执行构建过程
     {
-
         pHouseBuilder->BuildPart1();
 
         for (int i = 0; i < 4; i++)
