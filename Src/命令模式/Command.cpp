@@ -8,9 +8,10 @@ class Command
 public:
     virtual void execute() = 0;
 };
-
+//请求类，可以填充各种信息参数
 class ConcreteCommand1 : public Command
 {
+private:
     string arg;
 
 public:
@@ -23,6 +24,7 @@ public:
 
 class ConcreteCommand2 : public Command
 {
+private:
     string arg;
 
 public:
@@ -35,7 +37,8 @@ public:
 
 class MacroCommand : public Command
 {
-    vector<Command *> commands;
+private:
+    vector<Command *> commands;//多个命令组合成宏
 
 public:
     void addCommand(Command *c) { commands.push_back(c); }
@@ -50,7 +53,6 @@ public:
 
 int main()
 {
-
     ConcreteCommand1 command1(receiver, "Arg ###");
     ConcreteCommand2 command2(receiver, "Arg $$$");
 
