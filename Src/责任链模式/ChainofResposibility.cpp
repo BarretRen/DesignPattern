@@ -9,9 +9,10 @@ enum class RequestType
     REQ_HANDLER2,
     REQ_HANDLER3
 };
-
+//消息请求类
 class Reqest
 {
+private:
     string description;
     RequestType reqType;
 
@@ -23,15 +24,16 @@ public:
 
 class ChainHandler
 {
-
-    ChainHandler *nextChain;
+private:
+    ChainHandler *nextChain;//处理请求的对象链表
     void sendReqestToNextHandler(const Reqest &req)
-    {
+    {//发生请求到下一节点
         if (nextChain != nullptr)
             nextChain->handle(req);
     }
 
 protected:
+    //当前对象释放可以处理请求
     virtual bool canHandleRequest(const Reqest &req) = 0;
     virtual void processRequest(const Reqest &req) = 0;
 
@@ -47,7 +49,7 @@ public:
             sendReqestToNextHandler(req);
     }
 };
-
+//子类实现两个虚函数
 class Handler1 : public ChainHandler
 {
 protected:
@@ -60,7 +62,6 @@ protected:
         cout << "Handler1 is handle reqest: " << req.getDescription() << endl;
     }
 };
-
 class Handler2 : public ChainHandler
 {
 protected:
@@ -73,7 +74,6 @@ protected:
         cout << "Handler2 is handle reqest: " << req.getDescription() << endl;
     }
 };
-
 class Handler3 : public ChainHandler
 {
 protected:

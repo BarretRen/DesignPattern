@@ -15,7 +15,7 @@ public:
 //树节点
 class Composite : public Component
 {
-
+private:
     string name;
     list<Component *> elements;
 
@@ -30,12 +30,9 @@ public:
     {
         elements.remove(element);
     }
-
     void process()
     {
-
         //1. process current node
-
         //2. process leaf nodes
         for (auto &e : elements)
             e->process(); //多态调用
@@ -45,6 +42,7 @@ public:
 //叶子节点
 class Leaf : public Component
 {
+private:
     string name;
 
 public:
@@ -65,7 +63,6 @@ void Invoke(Component &c)
 
 int main()
 {
-
     Composite root("root");
     Composite treeNode1("treeNode1");
     Composite treeNode2("treeNode2");
@@ -82,7 +79,7 @@ int main()
     treeNode3.add(&treeNode4);
     treeNode4.add(&leaf2);
 
-    process(root);
-    process(leaf2);
-    process(treeNode3);
+    Invoke(root);
+    Invoke(leaf2);
+    Invoke(treeNode3);
 }

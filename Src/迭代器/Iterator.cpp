@@ -1,3 +1,4 @@
+//这种实现已经过时了
 template <typename T>
 class Iterator
 {
@@ -11,17 +12,17 @@ public:
 template <typename T>
 class MyCollection
 {
-
 public:
-    Iterator<T> GetIterator()
+    Iterator<T>* GetIterator()
     {
-        //...
+        return new CollectionIterator<T>(this);
     }
 };
 
 template <typename T>
 class CollectionIterator : public Iterator<T>
 {
+private:
     MyCollection<T> mc;
 
 public:
@@ -41,14 +42,14 @@ public:
     }
 };
 
-void MyAlgorithm()
+int main()
 {
     MyCollection<int> mc;
 
-    Iterator<int> iter = mc.GetIterator();
-
-    for (iter.first(); !iter.isDone(); iter.next())
+    Iterator<int>* iter = mc.GetIterator();
+    //虚函数运行时多态，耗时
+    for (*iter.first(); !*iter.isDone(); *iter.next())
     {
-        cout << iter.current() << endl;
+        cout << *iter.current() << endl;
     }
 }
