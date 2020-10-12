@@ -1,6 +1,5 @@
 class NetworkState
 {
-
 public:
     NetworkState *pNext;
     virtual void Operation1() = 0;
@@ -12,7 +11,6 @@ public:
 
 class OpenState : public NetworkState
 {
-
     static NetworkState *m_instance;
 
 public:
@@ -27,21 +25,18 @@ public:
 
     void Operation1()
     {
-
         //**********
         pNext = CloseState::getInstance();
     }
 
     void Operation2()
     {
-
         //..........
         pNext = ConnectState::getInstance();
     }
 
     void Operation3()
     {
-
         //$$$$$$$$$$
         pNext = OpenState::getInstance();
     }
@@ -49,18 +44,15 @@ public:
 
 class CloseState : public NetworkState
 {
-}
-//...
+};
 
 class NetworkProcessor
 {
-
     NetworkState *pState;
 
 public:
     NetworkProcessor(NetworkState *pState)
     {
-
         this->pState = pState;
     }
 

@@ -13,17 +13,17 @@ public:
     virtual int bar() = 0;
 };
 
-//遗留类型
+//遗留类
 class OldClass : public IAdaptee
 {
     //....
 };
 
 //对象适配器
-class Adapter : public ITarget
-{ //继承
+class Adapter : public ITarget //继承目标类
+{
 protected:
-    IAdaptee *pAdaptee; //组合
+    IAdaptee *pAdaptee; //组合遗留不兼容类
 
 public:
     Adapter(IAdaptee *pAdaptee)
@@ -32,21 +32,13 @@ public:
     }
 
     virtual void process()
-    {
+    { //兼容转换代码部分
         int data = pAdaptee->bar();
         pAdaptee->foo(data);
     }
 };
 
-//类适配器
-class Adapter : public ITarget,
-                protected OldClass
-{ //多继承
-
-}
-
-int
-main()
+int main()
 {
     IAdaptee *pAdaptee = new OldClass();
 
@@ -54,12 +46,9 @@ main()
     pTarget->process();
 }
 
-class stack
+//另一种：类适配器
+class Adapter : public ITarget,
+                protected OldClass
 {
-    deqeue container;
-};
-
-class queue
-{
-    deqeue container;
+    //多继承，重载类方法
 };
