@@ -65,7 +65,7 @@ public:
         return left->interpreter(var) - right->interpreter(var);
     }
 };
-
+//解析字符串，转换成表达式对象
 Expression *analyse(string expStr)
 {
     stack<Expression *> expStack;
@@ -75,20 +75,17 @@ Expression *analyse(string expStr)
     {
         switch (expStr[i])
         {
-        case '+':
-            // 加法运算
+        case '+': // 加法运算
             left = expStack.top();
             right = new VarExpression(expStr[++i]);
             expStack.push(new AddExpression(left, right));
             break;
-        case '-':
-            // 减法运算
+        case '-': // 减法运算
             left = expStack.top();
             right = new VarExpression(expStr[++i]);
             expStack.push(new SubExpression(left, right));
             break;
-        default:
-            // 变量表达式
+        default: // 变量表达式
             expStack.push(new VarExpression(expStr[i]));
         }
     }
@@ -103,7 +100,6 @@ void release(Expression *expression)
 
 int main(int argc, const char *argv[])
 {
-
     string expStr = "a+b-c+d-e";
     map<char, int> var;
     var.insert(make_pair('a', 5));
@@ -115,7 +111,6 @@ int main(int argc, const char *argv[])
     Expression *expression = analyse(expStr);
     int result = expression->interpreter(var);
     cout << result << endl;
-    release(expression);
-
+    release(expression);//释放所有new的对象
     return 0;
 }
