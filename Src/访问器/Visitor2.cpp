@@ -28,7 +28,7 @@ public:
         visitor.visitElementB(*this); //第二次多态辨析
     }
 };
-
+//=======上面的基类和子类不改变，由Visitor来添加新的处理===
 class Visitor
 {
 public:
@@ -37,7 +37,7 @@ public:
 
     virtual ~Visitor() {}
 };
-//扩展1
+//扩展1，添加新的处理
 class Visitor1 : public Visitor
 {
 public:
@@ -51,7 +51,7 @@ public:
         cout << "Visitor1 is processing ElementB" << endl;
     }
 };
-//扩展2
+//扩展2，添加新的处理
 class Visitor2 : public Visitor
 {
 public:
@@ -70,10 +70,10 @@ int main()
 {
     Visitor2 visitor;
     ElementB elementB;
-    elementB.accept(visitor); // double dispatch
+    elementB.accept(visitor); //两次多态辨析
 
     ElementA elementA;
-    elementA.accept(visitor);
+    elementA.accept(visitor);//两次多态辨析
 
     return 0;
 }

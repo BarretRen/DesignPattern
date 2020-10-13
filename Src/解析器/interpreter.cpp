@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <map>
 #include <stack>
@@ -15,7 +14,7 @@ public:
 //变量表达式
 class VarExpression : public Expression
 {
-
+private:
     char key;
 
 public:
@@ -29,11 +28,9 @@ public:
         return var[key];
     }
 };
-
 //符号表达式
 class SymbolExpression : public Expression
 {
-
     // 运算符左右两个参数
 protected:
     Expression *left;
@@ -44,11 +41,9 @@ public:
     {
     }
 };
-
 //加法运算
 class AddExpression : public SymbolExpression
 {
-
 public:
     AddExpression(Expression *left, Expression *right) : SymbolExpression(left, right)
     {
@@ -58,11 +53,9 @@ public:
         return left->interpreter(var) + right->interpreter(var);
     }
 };
-
 //减法运算
 class SubExpression : public SymbolExpression
 {
-
 public:
     SubExpression(Expression *left, Expression *right) : SymbolExpression(left, right)
     {
@@ -75,7 +68,6 @@ public:
 
 Expression *analyse(string expStr)
 {
-
     stack<Expression *> expStack;
     Expression *left = nullptr;
     Expression *right = nullptr;
@@ -100,15 +92,12 @@ Expression *analyse(string expStr)
             expStack.push(new VarExpression(expStr[i]));
         }
     }
-
     Expression *expression = expStack.top();
-
     return expression;
 }
 
 void release(Expression *expression)
 {
-
     //释放表达式树的节点内存...
 }
 
@@ -124,11 +113,8 @@ int main(int argc, const char *argv[])
     var.insert(make_pair('e', 10));
 
     Expression *expression = analyse(expStr);
-
     int result = expression->interpreter(var);
-
     cout << result << endl;
-
     release(expression);
 
     return 0;
